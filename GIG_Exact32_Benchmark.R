@@ -2,9 +2,8 @@
 # Benchmark exact simulation method for p=3/2 #  
 ###############################################
 
-set.seed(1)
-
-expose_stan_functions("~/Desktop/rig_rng.stan", show_compiler_warnings = TRUE)
+library(rbenchmark)
+expose_stan_functions("~/Documents/gig/rig_rng.stan", show_compiler_warnings = TRUE)
 library(GIGrvg) # For Hormann & Leydold method 
 library(boodist) # For Devroye method
 
@@ -37,6 +36,6 @@ benchmark("HormannLeydold" = {
     x[i] <- rgig32_rng(a=a, b=b)
   }
 }, 
-replications = 1000,
+replications = 10000,
 columns = c("test", "replications", "elapsed",
             "relative", "user.self", "sys.self"))
